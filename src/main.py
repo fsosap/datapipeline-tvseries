@@ -1,6 +1,6 @@
 import requests     as req
 import json         as json
-from datetime import date, timedelta
+import user_interaction     as user
 
 
 def get_tvseries_from_date(date:str):
@@ -11,8 +11,4 @@ def get_tvseries_from_date(date:str):
 
 
 if __name__ == "__main__":
-    date_init = date(2022,12,1)
-    date_end = date(2022,12,31)
-
-    print(get_tvseries_from_date(str(date_init)))
-    # main()
+    user.main()
