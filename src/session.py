@@ -9,7 +9,7 @@ class daterange():
         self.start_date = new_start_date
         self.end_date = new_end_date
 
-def get_input_params():
+def get_input_params() -> tuple:
     date_format = "%Y-%m-%d"
     start_date_txt = str(input("(format:YYYY-MM-DD)Provide the initial date:"))
     end_date_txt = str(input("(format:YYYY-MM-DD)Provide the final date:"))
