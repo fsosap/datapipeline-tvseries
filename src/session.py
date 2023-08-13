@@ -13,7 +13,7 @@ def get_input_params():
     date_format = "%Y-%m-%d"
     start_date_txt = str(input("(format:YYYY-MM-DD)Provide the initial date:"))
     end_date_txt = str(input("(format:YYYY-MM-DD)Provide the final date:"))
-    return (datetime.strptime(start_date_txt, date_format), datetime.strptime(end_date_txt, date_format))
+    return (datetime.strptime(start_date_txt, date_format).date(), datetime.strptime(end_date_txt, date_format).date())
 
 def set_date_range(daterange:daterange):
     while input("If you want to proceed press the enter key, else you'll modify the date:\n") != "":
