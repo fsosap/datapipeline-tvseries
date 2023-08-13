@@ -1,6 +1,6 @@
 import requests     as req
 import json         as json
-import user_interaction     as user
+import session      as session
 
 
 def get_tvseries_from_date(date:str):
@@ -11,4 +11,6 @@ def get_tvseries_from_date(date:str):
 
 
 if __name__ == "__main__":
-    user.main()
+    daterange = session.daterange()
+    print(f"Data extraction will be performed for the data range: {str(daterange.start_date)} to {str(daterange.end_date)}")
+    session.set_date_range(daterange)
