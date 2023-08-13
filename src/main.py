@@ -11,8 +11,3 @@ if __name__ == "__main__":
 
     # Data ingestion
     loader.load_raw_data_for_timerange(daterange.start_date, daterange.end_date)
-
-    # Clear output
-    
-    # if bool(input("Do you want to remove json results? True/False")) == True:
-    # hdlr.clear_files_from_directory("json/")
