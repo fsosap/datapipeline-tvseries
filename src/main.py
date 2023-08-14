@@ -2,6 +2,7 @@ import session      as session
 import loader       as loader
 import file_handler as hdlr
 import processor    as processor
+import model        as model
 
 
 if __name__ == "__main__":
@@ -15,6 +16,6 @@ if __name__ == "__main__":
 
     # Data integration
     master_df = processor.integrate_dfs()
-    processor.save_df_to_parquet("data/master_dataset.parquet", master_df)
-
-    # Split into data models entities
+    
+    # Split into data model entities
+    model.orchestrate(master_df)

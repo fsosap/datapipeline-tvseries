@@ -54,7 +54,3 @@ def integrate_dfs() -> DataFrame:
     master.post_clean()
     print("Successful dataset integration!\n","#rows:",len(master.df.index),"#cols:",len(master.df.columns))
     return master.df
-
-def save_df_to_parquet(parquet_file_path:str, df:DataFrame):
-    df.to_parquet(path=parquet_file_path, engine='fastparquet', compression='snappy')
-    print(f"Successful write over:{parquet_file_path}!")
