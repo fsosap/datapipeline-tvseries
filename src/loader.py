@@ -27,3 +27,6 @@ def write_response_into_file(response:json, file_name:str):
 def save_df_to_parquet(parquet_file_path:str, df:pd.DataFrame):
     df.to_parquet(path=parquet_file_path, engine='fastparquet', compression='snappy')
     print(f"Successful write over:{parquet_file_path}!")
+
+def read_from_parquet(parquet_file_path:str) -> pd.DataFrame:
+    return pd.read_parquet(parquet_file_path, engine='fastparquet')
