@@ -10,7 +10,7 @@ if __name__ == "__main__":
     print(f"Data extraction will be performed for the data range: {str(daterange.start_date)} to {str(daterange.end_date)}")
     session.set_date_range(daterange)
 
-    # Data ingestion
+    # # Data ingestion
     loader.load_raw_data_for_timerange(daterange.start_date, daterange.end_date)
 
     # Data integration

@@ -10,22 +10,30 @@ class Master_dataframe():
     def agg_to_master_df(self, incoming_df:pd.DataFrame):
         self.df = pd.concat([self.df, incoming_df], ignore_index=True, sort=False)
     
-    # def extract_custom_df(self, column_name:str):
-    #     custom_df = self.df[column_name]
+    def post_clean(self):
+        # drop empty columns
+        self.df.dropna(axis=1, how="all", inplace=True)
+        # drop columns with a considerable presence of NaN
+        total_rows = len(self.df.index)
+        for column in self.df.columns:
+            if self.df[column].isna().sum()/total_rows > 0.98:
+                self.df.drop(column, axis=1)
 
 
 
 def clean_df(incoming_df: pd.DataFrame) -> pd.DataFrame:
-    # drop empty columns
-    cleaned_df = incoming_df.dropna(axis=1, how="all")
-    # cast ended column
-    cleaned_df["_embedded.show.ended"] = cleaned_df["_embedded.show.ended"].astype('datetime64[ns]')
+    # cast 'ended' column
+    incoming_df["_embedded.show.ended"] = incoming_df["_embedded.show.ended"].astype('datetime64[ns]')
     # drop excluded columns based on human criteria
     COLS_TO_DROP = ['_embedded.show.externals.tvrage', '_embedded.show.externals.thetvdb', '_embedded.show.externals.imdb',\
                  '_embedded.show.image.medium', '_embedded.show.image.original', 'image.medium', 'image.original',\
                  '_embedded.show._links.previousepisode.href', '_embedded.show._links.nextepisode.href']
+    incoming_df_cols = incoming_df.columns
+    for col in COLS_TO_DROP:
+        if col not in incoming_df_cols:
+            COLS_TO_DROP.remove(col)
 
-    cleaned_df.drop(COLS_TO_DROP, axis=1, inplace=True)
+    cleaned_df = incoming_df.drop(incoming_df.loc[:, COLS_TO_DROP], axis=1, errors='ignore')
     
     return cleaned_df
 
@@ -44,4 +52,6 @@ def integrate_dfs() -> pd.DataFrame:
 
         master.agg_to_master_df(cleaned_df)
 
-        return master.df
+    master.post_clean()
+    # print("#rows:",len(master.df.index),"#cols:",len(master.df.columns))
+    return master.df
