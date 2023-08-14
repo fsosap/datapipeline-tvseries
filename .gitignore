@@ -160,4 +160,5 @@ cython_debug/
 #.idea/
 
 profiling/notebooks/resources/
-json
+json/
+data/

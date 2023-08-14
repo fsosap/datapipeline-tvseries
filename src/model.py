@@ -26,7 +26,7 @@ def orchestrate(df:pd.DataFrame):
     # create many2many entities
     M2M_ENTITIES = {"_embedded.show.genres":"genre", "_embedded.show.schedule.days":"schedule"}
     for entity in M2M_ENTITIES:
-        loader.save_df_to_parquet(parquet_path+M2M_ENTITIES[entity], create_many2many_df(entity, df))
+        loader.save_df_to_parquet(parquet_path+M2M_ENTITIES[entity]+'.parquet', create_many2many_df(entity, df))
     
     # create canonical tables
     ENTITIES = \
@@ -75,4 +75,4 @@ def orchestrate(df:pd.DataFrame):
     }
     
     for entity in ENTITIES:
-        loader.save_df_to_parquet(parquet_path+entity, extract_entities_df(ENTITIES[entity], df))
+        loader.save_df_to_parquet(parquet_path+entity+'.parquet', extract_entities_df(ENTITIES[entity], df))
