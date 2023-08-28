@@ -2,6 +2,7 @@
 Development of a short project to ETL from a REST API to a SQLite database
 
 data ingestion is modeled as the model which you can find on "model/tvseries-project_ingestion design.pdf". Please check it out for better understanding of the code. 
+![data pipeline design](/model/tvseries-project\ ingestion\ design.jpg "data pipeline design")
 
 To install this project you can follow the following steps:
 -- previous requierements:
@@ -13,7 +14,7 @@ also consider the need for having installed git on your system
 ```
 git version 2.39.2
 ```
-to avoid any mistake, also create on the folders: json, db, data  at the same level inside the project
+##### INSTALLING STEPS:
 
 1. copy the current repository into your system with 
 
