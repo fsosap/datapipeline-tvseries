@@ -160,8 +160,12 @@ cython_debug/
 #.idea/
 
 profiling/notebooks/resources/
-json/
-data/
+json/*.json
+data/*.parquet
+db/*.sqlite
+
+# No need to commit 
+test.py
 
 # macOS stuff
 **/.DS_Store
