@@ -1,14 +1,13 @@
 import pandas   as pd
 import json     as json
 import os
-import json_reader as reader
-from pandas import DataFrame
+import json_operations as json_ops
 
 class Master_dataframe():
     def __init__(self):
-        self.df = DataFrame()
+        self.df = pd.DataFrame()
 
-    def agg_to_master_df(self, incoming_df:DataFrame):
+    def agg_to_master_df(self, incoming_df: pd.DataFrame):
         self.df = pd.concat([self.df, incoming_df], ignore_index=True, sort=False)
     
     def post_clean(self):
@@ -22,7 +21,7 @@ class Master_dataframe():
 
 
 
-def clean_df(incoming_df: DataFrame) -> DataFrame:
+def clean_df(incoming_df: pd.DataFrame) -> pd.DataFrame:
     # cast 'ended' column
     incoming_df["_embedded.show.ended"] = incoming_df["_embedded.show.ended"].astype('datetime64[ns]')
     # drop excluded columns based on human criteria
@@ -38,18 +37,24 @@ def clean_df(incoming_df: DataFrame) -> DataFrame:
     
     return cleaned_df
 
+def clean_file_list(file_list:[]) -> []:
+    result = [file_name if file_name.endswith(".json") else None for file_name in file_list]
+    return result
 
-def integrate_dfs() -> DataFrame:
+
+def integrate_dfs() -> pd.DataFrame:
     json_file_path = "json/"
     file_list = os.listdir(json_file_path)
+    file_list = clean_file_list(file_list)
 
     master = Master_dataframe()
 
     for json_file in file_list:
-        data = reader.read_json_from_path(f"json/{json_file}")
-        incoming_df = reader.json_to_dataframe(data)
-        cleaned_df = clean_df(incoming_df)
-        master.agg_to_master_df(cleaned_df)
+        if json_file:
+            data = json_ops.read_json_from_path(f"json/{json_file}")
+            incoming_df = json_ops.json_to_dataframe(data)
+            cleaned_df = clean_df(incoming_df)
+            master.agg_to_master_df(cleaned_df)
 
     master.post_clean()
     print("Successful dataset integration!\n","#rows:",len(master.df.index),"#cols:",len(master.df.columns))

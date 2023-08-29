@@ -11,7 +11,7 @@ The data model designed for the project is the following
 
 To install this project you can follow the following steps:
 -- previous requierements:
-make sure you have already installed python and its version is the same or grather than mine:
+make sure you have already installed python and its version is the same or higher than mine:
 
 ```text
 Python 3.9.6
@@ -34,17 +34,17 @@ git version 2.39.2
 2. create a virtual environment to run the project and avoid downloads on your global python environment
 
     ```bash
-    python -m venv < venv_path >
+    python -m venv <venv_name>
     ```
 
 3. activate your virtual environment so you can start downloading packages
 
     ```bash
     # for UNIX based systems
-    source venv/bin/activate
+    source <venv_name>/bin/activate
 
     # for windows users
-    C:\> <venv>\Scripts\activate.bat
+    C:\> <venv_name>\Scripts\activate.bat
     ```
 
 4. download the dependencies from 'requirements.txt' file with the following command
