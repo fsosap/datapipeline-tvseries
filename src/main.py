@@ -1,8 +1,8 @@
 import session      as session
 import loader       as loader
-import file_handler as hdlr
 import processor    as processor
 import model        as model
+import sql_feeder   as sql_feed
 
 
 if __name__ == "__main__":
@@ -19,3 +19,6 @@ if __name__ == "__main__":
     
     # Split into data model entities
     model.orchestrate(master_df)
+
+    # Load tables into sqlite db
+    sql_feed.orquestrate()

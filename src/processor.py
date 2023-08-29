@@ -2,6 +2,7 @@ import pandas   as pd
 import json     as json
 import os
 import json_operations as json_ops
+import file_handler as hndl
 
 class Master_dataframe():
     def __init__(self):
@@ -20,7 +21,6 @@ class Master_dataframe():
                 self.df.drop(column, axis=1)
 
 
-
 def clean_df(incoming_df: pd.DataFrame) -> pd.DataFrame:
     # cast 'ended' column
     incoming_df["_embedded.show.ended"] = incoming_df["_embedded.show.ended"].astype('datetime64[ns]')
@@ -37,15 +37,11 @@ def clean_df(incoming_df: pd.DataFrame) -> pd.DataFrame:
     
     return cleaned_df
 
-def clean_file_list(file_list:[]) -> []:
-    result = [file_name if file_name.endswith(".json") else None for file_name in file_list]
-    return result
-
 
 def integrate_dfs() -> pd.DataFrame:
     json_file_path = "json/"
     file_list = os.listdir(json_file_path)
-    file_list = clean_file_list(file_list)
+    file_list = hndl.clean_file_list(file_list,'.json')
 
     master = Master_dataframe()
 

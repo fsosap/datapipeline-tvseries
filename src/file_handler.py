@@ -10,3 +10,7 @@ def clear_files_from_directory(dir:str):
             print(f"{file_path} deleted successfully.")
         except OSError as e:
             print(f"Error: {file_path} : {e.strerror}")
+
+def clean_file_list(file_list:[], file_type:str) -> []:
+    result = [file_name if file_name.endswith(file_type) else None for file_name in file_list]
+    return result
