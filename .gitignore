@@ -163,6 +163,7 @@ profiling/notebooks/resources/
 json/*.json
 data/*.parquet
 db/*.sqlite
+model/*.drawio
 
 # No need to commit 
 test.py
