@@ -27,7 +27,7 @@ if __name__ == "__main__":
     while True:
         print("Provide the query you want to execute:\
               \n Example: \
-              \n * SELECT AVG(rating) FROM Show\
-              \n * SELECT AVG(rating) FROM Episode\
+              \n * SELECT AVG(ratingAverage) FROM Show\
+              \n * SELECT AVG(ratingAverage) FROM Episode\
               \n * SELECT COUNT(show_id), name FROM GenrexShow INNER JOIN Genre ON Genre.genre_id = GenrexShow.genre_id GROUP BY genre_id")
         print(db_ops.execute_sql_query(input("Your query: ")))
