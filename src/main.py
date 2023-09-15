@@ -4,10 +4,9 @@ import processor    as processor
 import model        as model
 import sql_feeder   as sql_feed
 import db_operations    as db_ops
-
+import os
 
 if __name__ == "__main__":
-
     daterange = session.daterange()
     print(f"Data extraction will be performed for the data range: {str(daterange.start_date)} to {str(daterange.end_date)}")
     session.set_date_range(daterange)

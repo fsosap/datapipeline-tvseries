@@ -1,4 +1,4 @@
-# datapipeline-tvseries
+# datapipeline tvseries
 
 Development of a short project to ETL from a REST API to a SQLite database
 
@@ -23,7 +23,7 @@ also consider the need for having installed git on your system
 git version 2.39.2
 ```
 
-## INSTALLING STEPS
+## ⚙️ INSTALLING STEPS
 
 1. copy the current repository into your system with
 
@@ -58,3 +58,56 @@ git version 2.39.2
     ```bash
     python src/main.py
     ```
+
+## 🐋 Docker support
+
+This project supports running in a Docker container for easy deployment and isolation. Follow the steps below to run the project using Docker.
+
+### Prerequisites
+
+Before you begin, make sure you have Docker and Docker Compose installed on your system.
+
+- [Docker Installation Guide](https://docs.docker.com/get-docker/)
+- [Docker Compose Installation Guide](https://docs.docker.com/compose/install/)
+
+### Docker Configuration
+
+1. Clone the current repository into your system:
+
+    ```bash
+    git clone https://github.com/fsosap/datapipeline-tvseries.git
+    ```
+
+2. Navigate to the project directory:
+
+    ```bash
+    cd datapipeline-tvseries
+    ```
+
+3. Build and run the project using Docker Compose:
+
+```bash
+docker-compose up --build
+# Or use
+docker compose up --build
+```
+
+Docker Compose will create a Docker container for your project and mount volumes for data storage and the SQLite database.
+
+### Managing Data
+
+- Downloaded data files will be stored in the `data/` directory within the project.
+- The SQLite database will be stored in the `db/` directory within the project.
+
+By using volumes, data and database changes will persist even if the Docker container is stopped or removed.
+
+### Additional Configuration
+
+Make sure that your project code correctly references the paths within the container for data storage and database operations as defined in the `Dockerfile` and `docker-compose.yml` files.
+
+Feel free to customize the `.dockerignore` file to exclude any project-specific files or directories you don't want to include in the Docker image.
+
+For more information on Docker and Docker Compose, refer to the official documentation:
+
+- [Docker Documentation](https://docs.docker.com/)
+- [Docker Compose Documentation](https://docs.docker.com/compose/)
