@@ -12,6 +12,3 @@ RUN pip install -r requirements.txt
 
 # Expose a volume for storing downloaded files and SQLite database
 VOLUME ["/app/data", "/app/db"]
-
-# Run main.py when the container launches
-# CMD ["python", "src/main.py"]

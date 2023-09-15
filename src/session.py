@@ -1,9 +1,9 @@
 from datetime import date, datetime
 
 class daterange():
-    def __init__(self):
-        self.start_date = date(2022,12,1)
-        self.end_date = date(2022,12,31)
+    def __init__(self, start_date, end_date):
+        self.start_date = start_date
+        self.end_date = end_date
 
     def set_dates(self, new_start_date, new_end_date):
         self.start_date = new_start_date
@@ -25,6 +25,3 @@ def set_date_range(daterange:daterange):
         else:
             daterange.set_dates(start_date, end_date)
             print(f"Data extraction will be performed for the data range: {str(daterange.start_date)} to {str(daterange.end_date)}")
-
-# if __name__ == "__main__":
-    

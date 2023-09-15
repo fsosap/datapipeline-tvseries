@@ -87,12 +87,39 @@ Before you begin, make sure you have Docker and Docker Compose installed on your
 3. Build and run the project using Docker Compose:
 
 ```bash
-docker-compose up --build
+docker-compose up --build -d
 # Or use
-docker compose up --build
+docker compose up --build -d
 ```
 
 Docker Compose will create a Docker container for your project and mount volumes for data storage and the SQLite database.
+
+### Running the Program
+
+To run the program within the Docker container, follow these steps:
+
+1. Start the Docker container in detached mode (as we did earlier):
+```bash
+docker-compose up --build -d
+# Or use
+docker compose up --build -d
+```
+
+2. Execute the program within the container:
+```bash
+docker-compose exec app python src/main.py
+# Or use
+docker compose exec app python src/main.py
+```
+
+### Environment Variables
+
+You can customize the behavior of the program by using environment variables. The following variables are supported:
+
+- `START_DATE`: Specify the start date for data extraction (format: YYYY-MM-DD).
+- `END_DATE`: Specify the end date for data extraction (format: YYYY-MM-DD).
+
+If you do not provide values for these environment variables, the program will prompt you for input during execution. You can leave them empty or unset to use the default values.
 
 ### Managing Data
 
